@@ -1,0 +1,21 @@
+post_install() {
+	if [ -f /etc/default/kalipi-kernel ]; then
+	  . /etc/default/kalipi-kernel
+	  INITRD=${INITRD:-"No"}
+	  export INITRD
+	  RPI_INITRD=${RPI_INITRD:-"No"}
+	  export RPI_INITRD
+
+	fi
+	fi
+
+	fi
+
+	fi
+	fi
+
+}
+
+post_upgrade() {
+	post_install
+}

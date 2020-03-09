@@ -1,0 +1,23 @@
+post_install() {
+		if [ -d /run/systemd/system ]; then
+			systemctl --system daemon-reload >/dev/null || true
+			deb-systemd-invoke start 'hciuart.service' >/dev/null || true
+		fi
+	fi
+}
+
+post_upgrade() {
+	post_install
+}
+
+pre_remove() {
+	if [ -d /run/systemd/system ]; then
+		deb-systemd-invoke stop 'hciuart.service' >/dev/null || true
+	fi
+}
+
+post_remove() {
+	if [ -d /run/systemd/system ]; then
+		systemctl --system daemon-reload >/dev/null || true
+	fi
+}

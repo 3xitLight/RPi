@@ -1,0 +1,61 @@
+post_install() {
+	# This will only remove masks created by d-s-h on package removal.
+	deb-systemd-helper unmask hciuart.service >/dev/null || true
+
+	# was-enabled defaults to true, so new installations run enable.
+	if deb-systemd-helper --quiet was-enabled hciuart.service; then
+		# Enables the unit on first installation, creates new
+		# symlinks on upgrades if the unit file has changed.
+		deb-systemd-helper enable hciuart.service >/dev/null || true
+	else
+		# Update the statefile to add new symlinks (if any), which need to be
+		# cleaned up on purge. Also remove old symlinks.
+		deb-systemd-helper update-state hciuart.service >/dev/null || true
+	fi
+		if [ -x "/etc/init.d/hciuart" ]; then
+			update-rc.d hciuart defaults >/dev/null
+			invoke-rc.d hciuart start || exit $?
+		fi
+	fi
+}
+
+post_upgrade() {
+	post_install
+}
+
+pre_remove() {
+	if [ -d /run/systemd/system ]; then
+		deb-systemd-invoke stop hciuart.service >/dev/null
+	fi
+	if [ -x "/etc/init.d/hciuart" ]; then
+		invoke-rc.d hciuart stop || exit $?
+	fi
+}
+
+post_remove() {
+	if [ -d /run/systemd/system ]; then
+		systemctl --system daemon-reload >/dev/null || true
+	fi
+	if [ "$1" = "purge" ] ; then
+		update-rc.d hciuart remove >/dev/null
+	fi
+
+
+	# In case this system is running systemd, we make systemd reload the unit files
+	# to pick up changes.
+	if [ -d /run/systemd/system ] ; then
+		systemctl --system daemon-reload >/dev/null || true
+	fi
+	if [ "$1" = "remove" ]; then
+		if [ -x "/usr/bin/deb-systemd-helper" ]; then
+			deb-systemd-helper mask hciuart.service >/dev/null
+		fi
+	fi
+
+	if [ "$1" = "purge" ]; then
+		if [ -x "/usr/bin/deb-systemd-helper" ]; then
+			deb-systemd-helper purge hciuart.service >/dev/null
+			deb-systemd-helper unmask hciuart.service >/dev/null
+		fi
+	fi
+}

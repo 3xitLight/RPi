@@ -1,0 +1,28 @@
+# Maintainer: 3xitlight
+# Contributor: 3xitlight
+pkgname=bluez-firmware
+pkgver=1.2
+pkgrel=1
+pkgdesc="Firmware for Bluetooth devices. This firmware is required for operation of Bluetooth dongles based on the Broadcom BCM203x chipset."
+arch=('armv6h')
+url=""
+license=('')
+groups=('')
+options=('!strip' '!emptydirs')
+source=("PUT_FULL_URL_FOR_DOWNLOADING_DEB_PACKAGE_HERE")
+sha512sums=('94f0c169262bd06710ab69f02bc04468fb534242170681ee447aaa488cc7d24c399fdbdc289e03d55507e21d9c83c8a34fe90f367256b708b2c5c4761e18a3bf')
+
+package(){
+
+	# Extract package data
+	tar xzf data.tar.gz -C "${pkgdir}"
+
+	# Fix directories structure differencies
+	cd "${pkgdir}"
+
+	install -D -m644 "/usr/share/doc/bluez-firmware/copyright" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	mkdir -p usr/lib 2> /dev/null; mv lib/* usr/lib; rm -rf lib
+
+	cd ..
+
+}
