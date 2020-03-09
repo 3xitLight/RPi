@@ -5,6 +5,7 @@ pkgname=kalipi-kernel
 pkgver=4.19.15
 pkgrel=1
 pkgdesc="This package contains the Kali-Pi Linux kernel."
+arch=('armv6h')
 url="https://re4son-kernel.com"
 license=('g')
 groups=('')
