@@ -1,0 +1,25 @@
+# Maintainer: 3XiTLiGHT
+# Contributor: 3XiTLiGHT
+pkgname=kalipi-bootloader
+pkgver=4.19.15
+pkgrel=1
+pkgdesc="Kali-Pi bootloader. This package contains the Kali-Pi firmware and bootloader."
+url="https://re4son-kernel.com"
+license=('')
+arch=('armv6h')
+groups=('')
+optdepends=('kalipi-kernel')
+replaces=('raspberrypi-bootloader')
+options=('!strip' '!emptydirs')
+install=${pkgname}.install
+source=("https://github.com/3xitLight/RPi/raw/master/kalipi-bootloader_4.19.15-20190123_armhf/kalipi-bootloader_4.19.15-20190123_armhf.deb")
+sha512sums=('f266bb01dd7afd8f587f28d012f7d47773ede6b29cc74a839982a5fd2aa57d071d5573033f4842afc98d864882d7fdc435f98746356ec785f2f8374386f37fca')
+
+package(){
+
+	# Extract package data
+	tar xf data.tar.xz -C "${pkgdir}"
+
+	# install -D -m644 "/usr/share/doc/kalipi-bootloader/copyright" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+}

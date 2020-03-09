@@ -1,0 +1,28 @@
+To install drivers:
+-------------------
+Nexmon drivers and firmware can be installed using the re4son kernel installer.
+The drivers are installed for the running kernel.
+Please reboot after installing a new kernel, before installing these drivers.
+
+
+To install the drivers:
+-----------------------
+cd into the re4son-kernel install directory and run
+
+./install.sh -x
+
+
+To remove the drivers:
+----------------------
+cd into the re4son-kernel install directory and run
+
+./install.sh -o
+
+
+Example use:
+------------
+nexutil -m2
+
+tcpdump -i wlan0 -s0
+
+nexutil -m0
