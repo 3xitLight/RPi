@@ -25,7 +25,7 @@ package(){
 	# Fix directories structure differencies
 	cd "${pkgdir}"
 
-	install -D -m644 "/usr/share/doc/kalipi-kernel/copyright" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	#install -D -m644 "/usr/share/doc/kalipi-kernel/copyright" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	mkdir -p usr/lib 2> /dev/null; mv lib/* usr/lib; rm -rf lib
 
 	cd ..
