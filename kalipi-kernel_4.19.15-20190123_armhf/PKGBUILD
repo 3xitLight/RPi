@@ -12,7 +12,7 @@ replaces=('raspberrypi-kernel')
 backup=('etc/default/kalipi-kernel')
 options=('!strip' '!emptydirs')
 install=${pkgname}.install
-source=("https://github.com/3xitLight/RPi/kalipi-kernel_4.19.15-20190123_armhf/raw/master/kalipi-kernel_4.19.15-20190123_armhf.deb")
+source=("https://github.com/3xitLight/RPi/raw/master/kalipi-kernel_4.19.15-20190123_armhf/kalipi-kernel_4.19.15-20190123_armhf.deb")
 sha512sums=('dbe0258b0224983e132f2686139b63e4f1d44be99d078508706a9cae8dbf4f7e9cb01fd4af851fda457cca3f6011d611141b1f32423fed1596bb429d4fd92c90')
 
 package(){

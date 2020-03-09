@@ -6,13 +6,14 @@ pkgver=4.19.15
 pkgrel=1
 pkgdesc="This package provides the architecture-specific kernel header files for the Kali-Pi Linux kernel, generally used for building out-of-tree kernel modules."
 url="https://re4son-kernel.com"
+arch=('armv6h')
 license=('')
 groups=('')
 provides=('linux-headers')
 replaces=('raspberrypi-kernel-headers')
 options=('!strip' '!emptydirs')
 install=${pkgname}.install
-source=("https://github.com/3xitLight/RPi/kalipi-kernel-headers_4.19.15-20190123_armhf/raw/master/kalipi-kernel-headers_4.19.15-20190123_armhf.deb")
+source=("https://github.com/3xitLight/RPi/raw/master/kalipi-kernel-headers_4.19.15-20190123_armhf/kalipi-kernel-headers_4.19.15-20190123_armhf.deb")
 sha512sums=('ee179b14cf8ae92e06c05de31c5efeb996a7f06c294db2b7d072209d9e2ae183fb8241c3b8e2c0802c72941f9077bc8283c303db06a0a5f6db40670b0aa6948a')
 
 package(){
